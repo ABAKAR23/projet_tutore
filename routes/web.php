@@ -64,5 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewusers');
 
+Route::get('viewInfos', [AdminController::class, 'viewInfos'])->name('admin.viewInfos');
+
 
 

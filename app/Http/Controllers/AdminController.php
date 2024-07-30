@@ -38,5 +38,9 @@ class AdminController extends Controller
         return redirect()->route('admin.viewusers')->with('success', 'Utilisateur ajouté avec succès.');
     }
 
+    public function viewInfos(){
+        return view('admin.viewInfos');
+    }
+
 
 }
