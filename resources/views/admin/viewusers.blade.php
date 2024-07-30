@@ -304,7 +304,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $user)
+                @foreach($users as $user)
                     <tr>
                         <td>
 								<span class="custom-checkbox">

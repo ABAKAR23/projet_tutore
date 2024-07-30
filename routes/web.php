@@ -47,8 +47,22 @@ Route::post('admin/users', [AdminController::class, 'store'])->name('admin.users
 
 
 // Routes pour les utilisateurs
+
+
+
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/users', [AdminController::class, 'index'])->name('users.index');
-    Route::post('/users', [AdminController::class, 'store'])->name('users.store');
+    // Route pour afficher la liste des utilisateurs
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    // Route pour ajouter un utilisateur
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
     // Ajoutez d'autres routes nécessaires pour l'édition et la suppression des utilisateurs
 });
+
+// routes/web.php
+
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewusers');
+
+
+

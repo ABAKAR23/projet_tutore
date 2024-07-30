@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
- public function viewusers(){
-     $users= User::all();
-     return view('admin.viewusers',compact('users'));
- }
+    // Méthode pour afficher la liste des utilisateurs
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.viewusers', compact('users'));
+    }
 
-
+    // Méthode pour ajouter un utilisateur
     public function store(Request $request)
     {
-        // Validation des données
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
@@ -25,7 +26,6 @@ class AdminController extends Controller
             'usertype' => 'required|string|in:admin,manager,user',
         ]);
 
-        // Création d'un nouvel utilisateur
         $user = new User();
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
@@ -35,8 +35,8 @@ class AdminController extends Controller
         $user->usertype = $request->usertype;
         $user->save();
 
+
         return redirect()->route('admin.viewusers')->with('success', 'Utilisateur ajouté avec succès.');
+
     }
-
-
 }
