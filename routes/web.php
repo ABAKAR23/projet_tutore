@@ -64,5 +64,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewusers');
 
+Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+
+
+Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
+Route::post('/update-tournament', [AdminController::class, 'updateTournament'])->name('tournament.update');
+Route::post('/delete-tournament', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
 
 
