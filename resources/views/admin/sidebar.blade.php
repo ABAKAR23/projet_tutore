@@ -30,4 +30,5 @@
             <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
         </ul>
     </nav>
-    <div>
+</div>
+

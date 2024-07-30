@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->integer('age');
             $table->integer('numMaillot');
             $table->foreignId('userId')->constrained('users')->onDelete('cascade');
             $table->foreignId('equipeId')->constrained('equipes')->onDelete('cascade');

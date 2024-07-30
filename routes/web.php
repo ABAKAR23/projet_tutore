@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,7 @@ require __DIR__.'/auth.php';
 
 //route pour admin
 
-Route::get('admin/dasboard',[HomeController::class,'index'])->middleware(['auth','admin']);
+Route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
+
+//route pour manager
+Route::get('manager/dashboard', [ManagerController::class, 'index'])->middleware(['auth', 'manager']);
