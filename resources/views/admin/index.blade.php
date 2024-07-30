@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head> 
+  <head>
     @include('admin.css')
   </head>
   <body>
@@ -19,7 +19,7 @@
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+            <li><a href="{{url('viewusers')}}"> <i class="icon-grid"></i>Users </a></li>
                 <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
@@ -214,7 +214,7 @@
               </div>
             </div>
             <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
+              <div class="row d-flex align-items-center">
                 <div class="col-lg-4 d-flex align-items-center">
                   <div class="order">4th</div>
                   <div class="avatar"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Tomas Hecktor</strong><span class="d-block">@tomhecktor</span></a>
@@ -232,7 +232,7 @@
               </div>
             </div>
             <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
+              <div class="row d-flex align-items-center">
                 <div class="col-lg-4 d-flex align-items-center">
                   <div class="order">5th</div>
                   <div class="avatar"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Alexander Shelby</strong><span class="d-block">@alexshelby</span></a>
@@ -250,7 +250,7 @@
               </div>
             </div>
             <div class="public-user-block block">
-              <div class="row d-flex align-items-center">                   
+              <div class="row d-flex align-items-center">
                 <div class="col-lg-4 d-flex align-items-center">
                   <div class="order">6th</div>
                   <div class="avatar"> <img src="img/avatar-6.jpg" alt="..." class="img-fluid"></div><a href="#" class="name"><strong class="d-block">Arther Kooper</strong><span class="d-block">@artherkooper</span></a>
@@ -287,7 +287,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">   
+              <div class="col-lg-4">
                 <div class="stats-with-chart-1 block">
                   <div class="title"> <strong class="d-block">Visit Statistics</strong><span class="d-block">Lorem ipsum dolor sit</span></div>
                   <div class="row d-flex align-items-end justify-content-between">
@@ -354,7 +354,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">                                           
+              <div class="col-lg-6">
                 <div class="messages-block block">
                   <div class="title"><strong>New Messages</strong></div>
                   <div class="messages"><a href="#" class="message d-flex align-items-center">

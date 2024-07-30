@@ -4,6 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+
 
 
 Route::get('/',[HomeController::class,'home']);
@@ -30,3 +33,22 @@ Route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth
 
 //route pour manager
 Route::get('manager/dashboard', [ManagerController::class, 'index'])->middleware(['auth', 'manager']);
+
+//route pour la listes des users
+Route::get('viewusers', [\App\Http\Controllers\AdminController::class, 'viewusers'])->middleware(['auth', 'admin']);
+
+
+
+// Route pour afficher la vue d'ajout d'utilisateur (facultatif si modal)
+Route::get('admin/users/create', [AdminController::class, 'create'])->name('admin.users.create');
+
+// Route pour stocker le nouvel utilisateur
+Route::post('admin/users', [AdminController::class, 'store'])->name('admin.users.store');
+
+
+// Routes pour les utilisateurs
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/users', [AdminController::class, 'index'])->name('users.index');
+    Route::post('/users', [AdminController::class, 'store'])->name('users.store');
+    // Ajoutez d'autres routes nécessaires pour l'édition et la suppression des utilisateurs
+});
