@@ -64,5 +64,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewusers');
 
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
 
 
