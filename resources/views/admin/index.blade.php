@@ -19,9 +19,8 @@
             <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
             <ul class="list-unstyled">
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
-<<<<<<< HEAD
-            <li><a href="{{url('viewusers')}}"> <i class="icon-grid"></i>Users </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="{{url('viewusers')}}"> <i class="icon-grid"></i>Users </a></li>
+                <li><a href="{{url('viewTournois')}}"> <i class="fa fa-bar-chart"></i>Tournois </a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="{{url('viewInfos')}}"> <i class="icon-padnote"></i>Informations</a></li>
                 <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example Dropdown</a>
@@ -39,25 +38,6 @@
           <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
         </ul>
       </nav>
-      <!-- Sidebar Navigation end-->
-      <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
-          </div>
-=======
-                <li><a href="{{url('viewusers')}}"> <i class="icon-grid"></i>Users </a></li>
-                <li><a href="{{url('viewTournois')}}"> <i class="fa fa-bar-chart"></i>Tournois </a></li>
-
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                    </ul>
-                </li>
-
-        </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
             <div class="page-header">
@@ -453,7 +433,6 @@
                     </div>
                 </div>
             </footer>
->>>>>>> aefdce65894421023143863dcbe585ce0d522c36
         </div>
     </div>
     <!-- JavaScript files-->
