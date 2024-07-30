@@ -11,6 +11,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Activation des tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Remplissage du formulaire de modification avec les données de l'utilisateur
+            $('.edit').click(function() {
+                var id = $(this).data('id');
+                var nom = $(this).data('nom');
+                var prenom = $(this).data('prenom');
+                var age = $(this).data('age');
+                var email = $(this).data('email');
+                var usertype = $(this).data('usertype');
+
+                $('#editPlayerModal input[name="nom"]').val(nom);
+                $('#editPlayerModal input[name="prenom"]').val(prenom);
+                $('#editPlayerModal input[name="age"]').val(age);
+                $('#editPlayerModal input[name="email"]').val(email);
+                $('#editPlayerModal select[name="usertype"]').val(usertype);
+
+                // Mise à jour de l'action du formulaire
+                $('#editForm').attr('action', '/admin/users/' + id);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.delete', function(e){
+            e.preventDefault();
+            if(confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.')){
+                $(this).closest('form').submit();
+            }
+        });
+    </script>
+
+
     <style>
 
         .titre {
@@ -307,26 +344,33 @@
                 @foreach($users as $user)
                     <tr>
                         <td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
+            <span class="custom-checkbox">
+                <input type="checkbox" id="checkbox{{ $user->id }}" name="options[]" value="{{ $user->id }}">
+                <label for="checkbox{{ $user->id }}"></label>
+            </span>
                         </td>
-                        <td>{{$user->nom}}</td>
-                        <td>{{$user->prenom}}</td>
-                        <td>{{$user->age}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->usertype}}</td>
+                        <td>{{ $user->nom }}</td>
+                        <td>{{ $user->prenom }}</td>
+                        <td>{{ $user->age }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->usertype }}</td>
                         <td>
-                            <a href="#editPlayerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deletePlayerModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href="#editPlayerModal" class="edit" data-toggle="modal"
+                               data-id="{{ $user->id }}" data-nom="{{ $user->nom }}" data-prenom="{{ $user->prenom }}"
+                               data-age="{{ $user->age }}" data-email="{{ $user->email }}" data-usertype="{{ $user->usertype }}">
+                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                            </a>
+                            <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete" style="border:none; background:none;" data-toggle="tooltip" title="Delete"><i class="material-icons" style="color: #F44336;">&#xE872;</i></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
-
-
-
                 </tbody>
+
+
             </table>
             <div class="clearfix">
                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
@@ -394,40 +438,56 @@
 </div>
 
 <!-- Edit Modal HTML -->
+<!-- Edit Modal HTML -->
 <div id="editPlayerModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form method="POST" action="" id="editForm">
+                @csrf
+                @method('PATCH')
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Player</h4>
+                    <h4 class="modal-title">Modifier Utilisateur</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" required>
+                        <label>Nom</label>
+                        <input type="text" name="nom" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Age</label>
-                        <input type="text" class="form-control" required>
+                        <label>Prénom</label>
+                        <input type="text" name="prenom" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Statut</label>
-                        <textarea class="form-control" required></textarea>
+                        <label>Âge</label>
+                        <input type="number" name="age" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Numero de maillot</label>
-                        <input type="text" class="form-control" required>
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe (laisser vide pour ne pas changer)</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Type d'utilisateur</label>
+                        <select name="usertype" class="form-control" required>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="user">User</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-info" value="Save">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                    <input type="submit" class="btn btn-info" value="Enregistrer">
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <!-- Delete Modal HTML -->
 <div id="deletePlayerModal" class="modal fade">
     <div class="modal-dialog">

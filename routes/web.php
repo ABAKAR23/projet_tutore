@@ -66,5 +66,17 @@ Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewus
 
 Route::get('viewInfos', [AdminController::class, 'viewInfos'])->name('admin.viewInfos');
 
+Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+
+
+Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
+Route::post('/update-tournament', [AdminController::class, 'updateTournament'])->name('tournament.update');
+Route::post('/delete-tournament', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
 
 
