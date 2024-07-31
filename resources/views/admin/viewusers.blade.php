@@ -55,7 +55,7 @@
 
         body {
             color: #566787;
-            //background-image: url();
+            background-image: url();
             background-size: 600px;
 
 

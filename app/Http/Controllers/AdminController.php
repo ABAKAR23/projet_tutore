@@ -68,6 +68,10 @@ class AdminController extends Controller
         return redirect()->route('admin.viewTournois')->with('success', 'Tournoi ajouté avec succès.');
     }
 
+    public function viewInfos(){
+        return view('admin.viewInfos');
+    }
+
     public function updateTournament(Request $request)
 {
     // Validation des données

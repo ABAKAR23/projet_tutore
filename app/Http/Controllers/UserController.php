@@ -39,6 +39,12 @@ class UserController extends Controller
         return redirect()->route('admin.viewusers')->with('success', 'Utilisateur ajouté avec succès.');
 
     }
+
+    public function infos()
+    {
+        $users = User::all();
+        return view('admin.viewusers', compact('users'));
+    }
     public function destroy($id)
     {
         $user = User::findOrFail($id);

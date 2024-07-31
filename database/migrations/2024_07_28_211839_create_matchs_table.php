@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('matchs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('equipe1_id')->constrained('equipes')->onDelete('cascade');
+            $table->string('nomEquipe1');
             $table->foreignId('equipe2_id')->constrained('equipes')->onDelete('cascade');
+            $table->string('nomEquipe2');
             $table->foreignId('tournoiId')->constrained('tournois')->onDelete('cascade');
             $table->date('date');
             $table->time('heure');
