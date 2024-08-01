@@ -21,7 +21,7 @@
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="{{url('viewusers')}}"> <i class="icon-grid"></i>Users </a></li>
                 <li><a href="{{url('viewTournois')}}"> <i class="fa fa-bar-chart"></i>Tournois </a></li>
-                <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                <li><a href="forms.html"> <i class="icon-padnote"></i>Classement</a></li>
                 <li><a href="{{url('viewInfos')}}"> <i class="icon-padnote"></i>Informations</a></li>
                 <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example Dropdown</a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

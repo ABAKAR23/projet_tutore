@@ -64,19 +64,35 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.viewusers');
 
-Route::get('viewInfos', [AdminController::class, 'viewInfos'])->name('admin.viewInfos');
-
-Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
-
-
-Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
-Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
-Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
-Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
 Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
 
-Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-Route::patch('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+Route::get('viewInfos', [AdminController::class, 'viewInfos'])->name('admin.viewInfos');
+
+Route::get('/admin/view-infos', [AdminController::class, 'viewInfos'])->name('admin.viewInfos');
+Route::post('/add-info', [AdminController::class, 'storeInfo'])->name('info.store');
+Route::post('/infos/update', [AdminController::class, 'updateInfo'])->name('info.update');
+Route::delete('/infos/delete', [AdminController::class, 'deleteInfo'])->name('info.delete');
+
+
+
+Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+
+Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
+Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
+<<<<<<< HEAD
+Route::post('/update-tournament', [AdminController::class, 'updateTournament'])->name('tournament.update');
+Route::post('/delete-tournament', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+=======
+Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
+Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+>>>>>>> 9648f8de4757a91cec103d40124fb3dec260113e
+
+
+
+
 
 
