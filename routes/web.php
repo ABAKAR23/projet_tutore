@@ -82,8 +82,14 @@ Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admi
 
 Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
 Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
+<<<<<<< HEAD
 Route::post('/update-tournament', [AdminController::class, 'updateTournament'])->name('tournament.update');
 Route::post('/delete-tournament', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+=======
+Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
+Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+>>>>>>> 9648f8de4757a91cec103d40124fb3dec260113e
 
 
 
