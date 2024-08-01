@@ -117,7 +117,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Nom</th>
                         <th>Type</th>
                         <th>Date de Début</th>
