@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('classements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tournoiId')->constrained('tournois')->onDelete('cascade');
-            $table->integer('listeEquipes');
+            $table->string('equipe');
+            $table->integer('victoires');
+            $table->integer('defaites');
             $table->integer('points');
             $table->timestamps();
         });

@@ -330,11 +330,11 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-6">
-                            <h2>Gestion de <b>l'actualité</b></h2>
+                            <h2>Gestion des <b>classements</b></h2>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#addInfoModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter une information</span></a>
-                            <a href="#deleteInfoModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>
+                            <a href="#addClassementModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter des résultats</span></a>
+                            <a href="#deleteClassementModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>
                         </div>
                     </div>
                 </div>
@@ -347,26 +347,28 @@
                                     <label for="selectAll"></label>
                                 </span>
                             </th>
-                            <th>Titre</th>
-                            <th>Image</th>
-                            <th>Commentaire</th>
+                            <th>Equipe</th>
+                            <th>Victoires</th>
+                            <th>Défaites</th>
+                            <th>Nombre de Points</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($infos as $info)
+                        @foreach($classements as $classement)
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox{{ $info->id }}" name="options[]" value="{{ $info->id }}">
-                                    <label for="checkbox{{ $info->id }}"></label>
+                                    <input type="checkbox" id="checkbox{{ $classement->id }}" name="options[]" value="{{ $classement->id }}">
+                                    <label for="checkbox{{ $classement->id }}"></label>
                                 </span>
                             </td>
-                            <td>{{ $info->titre }}</td>
-                            <td>{{ $info->image }}</td>
-                            <td>{{ $info->commentaire }}</td>
+                            <td>{{ $classement->equipe }}</td>
+                            <td>{{ $classement->victoires }}</td>
+                            <td>{{ $classement->defaites }}</td>
+                            <td>{{ $classement->points }}</td>
                             <td>
-                                <a href="#editInfoModal" class="edit" data-toggle="modal" data-id="{{ $info->id }}" data-titre="{{ $info->titre }}" data-image="{{ $info->image }}" data-commentaire="{{ $info->commentaire }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#editClassementModal" class="edit" data-toggle="modal" data-id="{{ $classement->id }}" data-equipe="{{ $classement->equipe }}" data-victoires="{{ $classement->victoires }}" data-defaites="{{ $classement->defaites }}" data-points="{{ $classement->points }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -376,28 +378,32 @@
         </div>
     </div>
 
-    <!-- Ajouter info HTML -->
-    <div id="addInfoModal" class="modal fade">
+    <!-- Ajouter classement HTML -->
+    <div id="addClassementModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" action="{{ route('info.store') }}">
+                <form method="post" action="{{ route('classement.store') }}">
                     @csrf
                     <div class="modal-header">
-                        <h4 class="modal-title">Ajouter Informations</h4>
+                        <h4 class="modal-title">Ajouter Classements</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Titre</label>
-                            <input type="text" name="titre" class="form-control" required>
+                            <label>Nom de l'équipe</label>
+                            <input type="text" name="equipe" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Image</label>
-                            <input type="text" name="image" class="form-control" required>
+                            <label>Victoires</label>
+                            <input type="number" name="victoires" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Commentaire</label>
-                            <input type="text" name="commentaire" class="form-control" required>
+                            <label>Défaites</label>
+                            <input type="number" name="defaites" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Points</label>
+                            <input type="number" name="points" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -409,30 +415,32 @@
         </div>
     </div>
 
-    <!-- Editer info HTML -->
-    <div id="editInfoModal" class="modal fade">
+    <!-- Editer classement HTML -->
+    <div id="editClassementModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ route('info.update')}}" id="editInfoForm">
+                <form method="POST" action="{{ route('classement.update')}}" id="editClassementForm">
                     @csrf
                     <input type="hidden" name="id" id="edit-id">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modifier Actualité</h4>
+                        <h4 class="modal-title">Modifier Classement</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Titre</label>
-                            <input type="text" name="titre" id="edit-titre" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="text" name="image" id="edit-image" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Commentaire</label>
-                            <input type="text" name="commentaire" id="edit-commentaire" class="form-control" required>
-                        </div>
+                    <div class="form-group">
+                        <label>Nom de l'équipe</label>
+                        <input type="text" name="edit-equipe" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Victoires</label>
+                        <input type="number" name="edit-victoires" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Défaites</label>
+                        <input type="number" name="edit-defaites" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Points</label>
+                        <input type="number" name="edit-points" class="form-control" required>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
@@ -444,15 +452,15 @@
     </div>
 
     <!-- Delete Modal HTML -->
-    <div id="deleteInfoModal" class="modal fade">
+    <div id="deleteClassementModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ route('info.delete'), $info->id }}" id="deleteInfoForm">
+                <form method="POST" action="{{ route('classement.delete'), $classement->id }}" id="deleteClassementForm">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $info->id }}">
+                    <input type="hidden" name="id" value="{{ $classement->id }}">
                     <div class="modal-header">
-                        <h4 class="modal-title">Supprimer Info</h4>
+                        <h4 class="modal-title">Supprimer classement</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -476,19 +484,21 @@
             // Remplissage du formulaire de modification avec les données de l'utilisateur
             $('.edit').click(function() {
                 var id = $(this).data('id');
-                var titre = $(this).data('titre');
-                var image = $(this).data('image');
-                var commentaire = $(this).data('commentaire');
+                var equipe = $(this).data('equipe');
+                var victoires = $(this).data('victoires');
+                var defaites = $(this).data('defaites');
+                var points = $(this).data('points');
 
                 // Remplir les champs du formulaire
                 $('#edit-id').val(id);
-                $('#editInfoForm input[name="titre"]').val(titre);
-                $('#editInfoForm input[name="image"]').val(image);
-                $('#editInfoForm input[name="commentaire"]').val(commentaire);
+                $('#editClassementForm input[name="equipe"]').val(equipe);
+                $('#editClassementForm input[name="victoires"]').val(victoires);
+                $('#editClassementForm input[name="defaites"]').val(defaites);
+                $('#editClassementForm input[name="points"]').val(points);
 
                 // Mise à jour de l'action du formulaire pour inclure l'ID
-                var actionUrl = '/infos/update';
-                $('#editInfoForm').attr('action', actionUrl);
+                var actionUrl = '/classements/update';
+                $('#editClassementForm').attr('action', actionUrl);
             });
         });
     </script>
@@ -501,7 +511,7 @@
             // Afficher le modal de suppression et définir l'action du formulaire
             $('.delete').click(function() {
                 var id = $(this).data('id');
-                $('#deleteInfoForm').attr('action', 'infos/delete');
+                $('#deleteClassementForm').attr('action', 'classements/delete');
             });
         });
     </script>

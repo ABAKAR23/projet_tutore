@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classement;
 use App\Models\Infos;
 use App\Models\Tournoi;
 use App\Models\User;
@@ -105,7 +106,6 @@ class AdminController extends Controller
     }
 
 
-<<<<<<< HEAD
     // CRUD infos
     public function viewInfos(){
         $infos = Infos::all();
@@ -159,7 +159,63 @@ class AdminController extends Controller
 
         return redirect()->route('admin.viewInfos')->with('success', 'Information supprimée avec succès.');
     }
-=======
-    
->>>>>>> 9648f8de4757a91cec103d40124fb3dec260113e
+
+
+    // CRUD classements
+    public function viewClassements(){
+        $classements = Classement::all();
+        return view('admin.viewClassements', compact('classements'));
+    }
+
+    public function storeClassement(Request $request)
+    {
+        // Validation des données
+        $validatedData = $request->validate([
+            'equipe' => 'required|string|max:255',
+            'victoires' => 'required|integer|max:10',
+            'defaites' => 'required|integer|max:10',
+            'points' => 'required|integer|max:10',
+        ]);
+
+        // Création de la nouvelle info
+        $classement = new Classement();
+        $classement->equipe = $request->equipe;
+        $classement->victoires = $request->victoires;
+        $classement->defaites = $request->defaites;
+        $classement->points = $request->input('points');
+        $classement->save();
+
+        return redirect()->route('admin.viewClassements')->with('success', 'Informations ajoutées avec succès.');
+    }
+
+    public function updateClassement(Request $request)
+    {
+        // Validation des données
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:classements,id',
+            'equipe' => 'required|string|max:255',
+            'victoires' => 'required|integer|max:10',
+            'defaites' => 'required|integer|max:10',
+            'points' => 'required|integer|max:10',
+        ]);
+
+        // Trouver l'info par ID et mettre à jour
+        $classement = Classement::find($request->id);
+        $classement->equipe = $request->input('equipe');
+        $classement->victoires = $request->input('victoires');
+        $classement->defaites = $request->input('defaites');
+        $classement->points = $request->input('points');
+        $classement->save();
+
+        // Rediriger avec un message de succès
+        return redirect()->route('admin.viewClassements')->with('success', 'Information mise à jour avec succès.');
+    }
+
+    public function deleteClassement(Request $request)
+    {
+        $classement= Classement::find($request->id);
+        $classement->delete();
+
+        return redirect()->route('admin.viewClassements')->with('success', 'Information supprimée avec succès.');
+    }
 }
