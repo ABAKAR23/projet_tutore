@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaiementController;
 
 
 
@@ -93,7 +94,10 @@ Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->n
 Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
 
 
-
+Route::post('/paiement', [PaiementController::class, 'store'])->name('paiement.store');
+Route::get('/test', function () {
+    return view('card.card');
+});
 
 
 
