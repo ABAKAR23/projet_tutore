@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SpectateurController;
 use App\Http\Controllers\UserController;
 use App\Models\Spectateur;
+use App\Http\Controllers\PaiementController;
 
 Route::get('/',[HomeController::class,'home']);
 
@@ -92,14 +93,17 @@ Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->nam
 Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
 Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
 
-
 Route::get('/index', [SpectateurController::class, 'viewIndex'])->name('index');
 Route::get('/tournois', [SpectateurController::class, 'viewTournois'])->name('viewSpecTournois');
 Route::get('/actualite', [SpectateurController::class, 'viewActualite'])->name('viewSpecActualite');
 Route::get('/contact', [SpectateurController::class, 'viewContact'])->name('viewSpecContact');
+Route::get('/classement', [SpectateurController::class, 'viewClassement'])->name('viewSpecClassement');
 
 
-
+Route::post('/paiement', [PaiementController::class, 'store'])->name('paiement.store');
+Route::get('/test', function () {
+    return view('card.card');
+});
 
 
 

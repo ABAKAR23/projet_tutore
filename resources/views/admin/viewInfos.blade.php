@@ -348,8 +348,8 @@
                                 </span>
                             </th>
                             <th>Titre</th>
-                            <th>Image</th>
-                            <th>Commentaire</th>
+                            <!-- <th>Image</th>
+                            <th>Commentaire</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -363,8 +363,8 @@
                                 </span>
                             </td>
                             <td>{{ $info->titre }}</td>
-                            <td>{{ $info->image }}</td>
-                            <td>{{ $info->commentaire }}</td>
+                            <!-- <td>{{ $info->image }}</td>
+                            <td>{{ $info->commentaire }}</td> -->
                             <td>
                                 <a href="#editInfoModal" class="edit" data-toggle="modal" data-id="{{ $info->id }}" data-titre="{{ $info->titre }}" data-image="{{ $info->image }}" data-commentaire="{{ $info->commentaire }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             </td>

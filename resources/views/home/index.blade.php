@@ -74,7 +74,7 @@
                     <h1 class="text-white">ESMT's Cups Events</h1>
                     <p>Bienvenue dans la fil d'actualité sportive de l'ESMT. Vous trouverez ici les dernières nouvelles sur les différentes coupes de l'ESMT, les résultats, les événements à venir et bien plus encore.</p>
                     <p>
-                        <a href="#" class="btn btn-primary py-3 px-4 mr-3">Réserver un ticket</a>
+                        <a href="/test" class="btn btn-primary py-3 px-4 mr-3">Réserver un ticket</a>
                     </p>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <div class="team-1 w-50">
                         <div class="team-details w-100 text-center">
                             <img src="/images/logo_1.png" alt="Image" class="img-fluid">
-                            <h3>LTI-3<span>(win)</span></h3>
+                            <h3>LTI-3<span>(vainqueur)</span></h3>
                             <ul class="list-unstyled">
                                 <li>Alamine LO  (2)</li>
                                 <li>Bachir FAYE  (1)</li>
@@ -100,37 +100,7 @@
                     <div class="team-2 w-50">
                         <div class="team-details w-100 text-center">
                             <img src="/images/logo_2.png" alt="Image" class="img-fluid">
-                            <h3>LTI-1<span>(loss)</span></h3>
-                            <ul class="list-unstyled">
-                                <li>Pape GUEYE  (1)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex team-vs">
-                    <span class="score">4-1</span>
-                    <div class="team-1 w-50">
-                        <div class="team-details w-100 text-center">
-                            <img src="/images/logo_1.png" alt="Image" class="img-fluid">
-                            <h3>LTI-3<span>(win)</span></h3>
-                            <ul class="list-unstyled">
-                                <li>Alamine LO  (2)</li>
-                                <li>Bachir FAYE  (1)</li>
-                                <li>Ibou DIALLO  (1)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="team-2 w-50">
-                        <div class="team-details w-100 text-center">
-                            <img src="/images/logo_2.png" alt="Image" class="img-fluid">
-                            <h3>LTI-1<span>(loss)</span></h3>
+                            <h3>LTI-1<span>(perdant)</span></h3>
                             <ul class="list-unstyled">
                                 <li>Pape GUEYE  (1)</li>
                             </ul>
@@ -147,7 +117,7 @@
                 <div class="col-lg-6">
                     <div class="widget-next-match">
                         <div class="widget-title">
-                            <h3>Next Soccer Match</h3>
+                            <h3>Prochain match de foot</h3>
                         </div>
                         <div class="widget-body mb-3">
                             <div class="widget-vs">
@@ -167,11 +137,11 @@
                             </div>
                         </div>
                         <div class="text-center widget-vs-contents mb-4">
-                            <h4>ESMT Football Cup</h4>
+                            <h4>CAN ESMT</h4>
                             <p class="mb-5">
-                                <span class="d-block">August 3rd, 2024</span>
-                                <span class="d-block">17:00 PM</span>
-                                <strong class="text-primary">ESMT football field</strong>
+                                <span class="d-block">03 Aout 2024</span>
+                                <span class="d-block">17:00</span>
+                                <strong class="text-primary">Terrain de football de l'ESMT</strong>
                             </p>
                         </div>
                     </div>
@@ -180,31 +150,31 @@
                 <div class="col-lg-6">
                     <div class="widget-next-match">
                         <div class="widget-title">
-                            <h3>Next Basket-Ball Match</h3>
+                            <h3>Prochain match de basket</h3>
                         </div>
                         <div class="widget-body mb-3">
                             <div class="widget-vs">
                                 <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                                     <div class="team-1 text-center">
-                                        <img src="/images/logo_1.png" alt="Image">
+                                        <img src="/images/logo_6.png" alt="Image">
                                         <h3>Master</h3>
                                     </div>
                                     <div>
                                         <span class="vs"><span>VS</span></span>
                                     </div>
                                     <div class="team-2 text-center">
-                                        <img src="/images/logo_2.png" alt="Image">
+                                        <img src="/images/logo_6.png" alt="Image">
                                         <h3>INGC</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center widget-vs-contents mb-4">
-                            <h4>ESMT Bsket-Ball League</h4>
+                            <h4>ESMT NBA League</h4>
                             <p class="mb-5">
-                                <span class="d-block">August 4th, 2024</span>
-                                <span class="d-block">9:00 AM</span>
-                                <strong class="text-primary">ESMT basket-ball field</strong>
+                                <span class="d-block">04 Aout 2024</span>
+                                <span class="d-block">9:00</span>
+                                <strong class="text-primary">Terrain de basket de l'ESMT</strong>
                             </p>
                         </div>
                     </div>

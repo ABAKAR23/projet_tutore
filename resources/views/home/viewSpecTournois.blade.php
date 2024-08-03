@@ -20,19 +20,19 @@
     .card {
       background-color: transparent;
       border: 2px solid #8B0000;
-      margin: 10px; /* Added margin for spacing between cards */
+      margin: 10px; 
       width: 500px;
     }
 
     .card-body {
-      color: #8B0000; /* Dark Red Color */
-      font-size: 20px; /* Increase font size */
+      color: #8B0000; 
+      font-size: 20px; 
     }
 
     .card-title,
     .card-text {
-      color: #8B0000; /* Dark Red Color */
-      margin-bottom: 50px; /* Added spacing between lines */
+      color: #8B0000; 
+      margin-bottom: 50px; 
     }
 
     .btn-primary {
@@ -89,7 +89,7 @@
                     <p class="card-text">Date de Début: {{ $tournoi->dateDebut }}</p>
                     <p class="card-text">Date de Fin: {{ $tournoi->dateFin }}</p>
                     <p class="card-text">Statut: {{ $tournoi->statut }}</p>
-                    <a href="#" class="btn btn-primary"><span>Classement et Résultats</span></a>
+                    <a href="{{route('viewSpecClassement')}}" class="btn btn-primary"><span>Classement et Résultats</span></a>
                   </div>
                 </div>
               </div>

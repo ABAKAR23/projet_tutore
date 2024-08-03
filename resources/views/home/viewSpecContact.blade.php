@@ -27,12 +27,6 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
-    ::placeholder {
-        color: white; /* Change la couleur du texte des placeholders en blanc */
-    }
-    </style>
-
 </head>
 
 <body>
