@@ -75,6 +75,7 @@
                     <p>Bienvenue dans la fil d'actualité sportive de l'ESMT. Vous trouverez ici les dernières nouvelles sur les différentes coupes de l'ESMT, les résultats, les événements à venir et bien plus encore.</p>
                     <p>
                         <a href="/test" class="btn btn-primary py-3 px-4 mr-3">Réserver un ticket</a>
+                        <a href="#" class="more light">Learn More</a>
                     </p>
                 </div>
             </div>

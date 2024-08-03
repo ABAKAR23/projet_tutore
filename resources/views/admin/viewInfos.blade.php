@@ -13,7 +13,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<<<<<<< HEAD
+=======
     <!-- Vos balises <head> existantes ici -->
+>>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
     <style>
         .titre {
             text-align: center;
@@ -23,8 +26,6 @@
             color: #566787;
             background-image: url(bac.jpg);
             background-size: 600px;
-
-
             font-family: 'Varela Round', sans-serif;
             font-size: 13px;
         }
@@ -297,26 +298,30 @@
     </style>
     <script>
         $(document).ready(function() {
-            // Activate tooltip
+            // Activation des tooltips
             $('[data-toggle="tooltip"]').tooltip();
 
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function() {
-                if (this.checked) {
-                    checkbox.each(function() {
-                        this.checked = true;
-                    });
-                } else {
-                    checkbox.each(function() {
-                        this.checked = false;
-                    });
-                }
+            // Remplissage du formulaire de modification avec les données de l'utilisateur
+            $('.edit').click(function() {
+                var id = $(this).data('id');
+                var titre = $(this).data('titre');
+                var image = $(this).data('image');
+                var commentaire = $(this).data('commentaire');
+
+                // Remplir les champs du formulaire
+                $('#editInfoForm input[name="id"]').val(id);
+                $('#editInfoForm input[name="titre"]').val(titre);
+                $('#editInfoForm input[name="image"]').val(image);
+                $('#editInfoForm input[name="commentaire"]').val(commentaire);
+
+                // Mise à jour de l'action du formulaire pour inclure l'ID
+                $('#editInfoForm').attr('action', '/infos/update/' + id);
             });
-            checkbox.click(function() {
-                if (!this.checked) {
-                    $("#selectAll").prop("checked", false);
-                }
+
+            // Afficher le modal de suppression et définir l'action du formulaire
+            $('.delete').click(function() {
+                var id = $(this).data('id');
+                $('#deleteInfoForm').attr('action', '/infos/delete/' + id);
             });
         });
     </script>
@@ -330,43 +335,60 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-6">
-                            <h2>Gestion de <b>l'actualité</b></h2>
+                            <h2>Gérer les <b>Informations</b></h2>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#addInfoModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter une information</span></a>
-                            <a href="#deleteInfoModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>
+                            <a href="#addInfoModal" class="btn btn-success" data-toggle="modal">
+                                <i class="material-icons">&#xE147;</i> <span>Ajouter une information</span>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>
+                            <th>#</th>
                             <th>Titre</th>
+<<<<<<< HEAD
                             <!-- <th>Image</th>
                             <th>Commentaire</th> -->
+=======
+                            <th>Image</th>
+                            <th>Commentaire</th>
+<<<<<<< HEAD
+                            <th>Actions</th>
+=======
+>>>>>>> 143ccd8f6a88db336910e96b4dcd3511d5b85c5b
                             <th>Action</th>
+>>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($infos as $info)
                         <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox{{ $info->id }}" name="options[]" value="{{ $info->id }}">
-                                    <label for="checkbox{{ $info->id }}"></label>
-                                </span>
-                            </td>
+                            <td>{{ $info->id }}</td>
                             <td>{{ $info->titre }}</td>
+<<<<<<< HEAD
                             <!-- <td>{{ $info->image }}</td>
                             <td>{{ $info->commentaire }}</td> -->
+=======
+                            <td><img src="{{ $info->image }}" alt="Image" width="100"></td>
+                            <td>{{ $info->commentaire }}</td>
+>>>>>>> 143ccd8f6a88db336910e96b4dcd3511d5b85c5b
                             <td>
+<<<<<<< HEAD
+                                <a href="#editInfoModal" class="edit" data-toggle="modal" 
+                                    data-id="{{ $info->id }}" data-titre="{{ $info->titre }}"
+                                    data-image="{{ $info->image }}" data-commentaire="{{ $info->commentaire }}">
+                                    <i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i>
+                                </a>
+                                <a href="#deleteInfoModal" class="delete" data-toggle="modal" 
+                                    data-id="{{ $info->id }}">
+                                    <i class="material-icons" data-toggle="tooltip" title="Supprimer">&#xE872;</i>
+                                </a>
+=======
                                 <a href="#editInfoModal" class="edit" data-toggle="modal" data-id="{{ $info->id }}" data-titre="{{ $info->titre }}" data-image="{{ $info->image }}" data-commentaire="{{ $info->commentaire }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+>>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
                             </td>
                         </tr>
                         @endforeach
@@ -376,67 +398,80 @@
         </div>
     </div>
 
-    <!-- Ajouter info HTML -->
+    <!-- Ajouter info Modal HTML -->
     <div id="addInfoModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form method="post" action="{{ route('info.store') }}">
                     @csrf
-                    <div class="modal-header">
-                        <h4 class="modal-title">Ajouter Informations</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">Ajouter une Information</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Titre</label>
-                            <input type="text" name="titre" class="form-control" required>
+                            <input type="text" class="form-control" name="titre" required>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input type="text" name="image" class="form-control" required>
+                            <input type="text" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
                             <label>Commentaire</label>
-                            <input type="text" name="commentaire" class="form-control" required>
+                            <textarea class="form-control" name="commentaire" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                        <input type="submit" class="btn btn-success" value="Ajouter">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Editer info HTML -->
+    <!-- Editer info Modal HTML -->
     <div id="editInfoModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
+<<<<<<< HEAD
+                <form method="POST" action="{{ route('info.update') }}" id="editInfoForm">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">Modifier l'Information</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+=======
                 <form method="POST" action="{{ route('info.update')}}" id="editInfoForm">
                     @csrf
                     <input type="hidden" name="id" id="edit-id">
                     <div class="modal-header">
                         <h4 class="modal-title">Modifier Actualité</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+>>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Titre</label>
-                            <input type="text" name="titre" id="edit-titre" class="form-control" required>
+                            <input type="text" class="form-control" name="titre" required>
                         </div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input type="text" name="image" id="edit-image" class="form-control" required>
+                            <input type="text" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
                             <label>Commentaire</label>
-                            <input type="text" name="commentaire" id="edit-commentaire" class="form-control" required>
+                            <textarea class="form-control" name="commentaire" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                        <input type="submit" class="btn btn-info" value="Modifier">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </form>
             </div>
@@ -447,26 +482,29 @@
     <div id="deleteInfoModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ route('info.delete'), $info->id }}" id="deleteInfoForm">
+                <form method="POST" action="{{ route('info.delete') }}" id="deleteInfoForm">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $info->id }}">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Supprimer Info</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-header">                      
+                        <h4 class="modal-title">Supprimer l'Information</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <p>Êtes-vous sûr de vouloir supprimer ces enregistrements ?</p>
-                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                        <p>Êtes-vous sûr de vouloir supprimer cette information ?</p>
+                        <input type="hidden" name="id" value="">
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
 
     <script>
         $(document).ready(function() {
@@ -505,6 +543,7 @@
             });
         });
     </script>
+>>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
 </body>
 
 </html>

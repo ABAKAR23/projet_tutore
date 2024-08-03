@@ -5,10 +5,17 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+<<<<<<< HEAD
 use App\Http\Controllers\SpectateurController;
+=======
+use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\MatchController;
+>>>>>>> 143ccd8f6a88db336910e96b4dcd3511d5b85c5b
 use App\Http\Controllers\UserController;
 use App\Models\Spectateur;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\SimpleQRcodeController;
+
 
 Route::get('/',[HomeController::class,'home']);
 
@@ -36,7 +43,7 @@ Route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth
 Route::get('manager/dashboard', [ManagerController::class, 'index'])->middleware(['auth', 'manager']);
 
 //route pour la listes des users
-Route::get('viewusers', [\App\Http\Controllers\AdminController::class, 'viewusers'])->middleware(['auth', 'admin']);
+Route::get('viewusers', [AdminController::class, 'viewusers'])->middleware(['auth', 'admin']);
 
 
 
@@ -100,6 +107,23 @@ Route::get('/contact', [SpectateurController::class, 'viewContact'])->name('view
 Route::get('/classement', [SpectateurController::class, 'viewClassement'])->name('viewSpecClassement');
 
 
+Route::get('viewEquipes', [EquipeController::class, 'index'])->name('viewEquipes');
+Route::get('/equipes/create', [EquipeController::class, 'create'])->name('equipes.create');
+Route::post('/equipes', [EquipeController::class, 'store'])->name('equipes.store');
+Route::get('/admin/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('admin.editEquipe');
+
+Route::get('/admin/equipes', [EquipeController::class, 'index'])->name('admin.viewEquipes');
+Route::post('/admin/equipes', [EquipeController::class, 'store'])->name('admin.storeEquipe');
+Route::put('/admin/equipes/{id}', [EquipeController::class, 'update'])->name('admin.updateEquipe');
+Route::delete('/admin/equipes/{id}', [EquipeController::class, 'destroy'])->name('admin.deleteEquipe');
+Route::get('/equipes/{id}/membres', [EquipeController::class, 'manageMembers'])->name('admin.manageMembers');
+Route::post('/equipe/store-member', [EquipeController::class, 'storeMember'])->name('equipe.storeMember');
+Route::get('/tournois', [AdminController::class, 'viewTournois'])->name('tournois');
+// Dans web.php
+// Dans routes/web.php
+Route::get('/admin/equipes', [AdminController::class, 'manageMembers'])->name('admin.manageMembers');
+
+
 Route::post('/paiement', [PaiementController::class, 'store'])->name('paiement.store');
 Route::get('/test', function () {
     return view('card.card');
@@ -107,3 +131,11 @@ Route::get('/test', function () {
 
 
 
+# la route "simple-qrcode"
+//Route::get("simple-qrcode", "SimpleQRcodeController@generate");
+Route::get('simple-qrcode', [SimpleQRcodeController::class, 'generate'])->name('simple-qrcode');
+
+use App\Http\Controllers\ChatbotController;
+
+Route::get('/chatbot', [ChatbotController::class, 'index']);
+Route::post('/chatbot', [ChatbotController::class, 'respond']);
