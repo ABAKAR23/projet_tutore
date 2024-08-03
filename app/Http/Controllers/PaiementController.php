@@ -28,6 +28,6 @@ class PaiementController extends Controller
         ]);
 
         // Redirection ou réponse après le paiement
-        return redirect()->back()->with('success', 'Paiement enregistré avec succès.');
+        return redirect("simple-qrcode")->with('success', 'Paiement enregistré avec succès.');
     }
 }

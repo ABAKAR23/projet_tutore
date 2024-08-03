@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\SimpleQRcodeController;
 
 
 
@@ -100,4 +101,7 @@ Route::get('/test', function () {
 });
 
 
+# la route "simple-qrcode"
+//Route::get("simple-qrcode", "SimpleQRcodeController@generate");
+Route::get('simple-qrcode', [SimpleQRcodeController::class, 'generate'])->name('simple-qrcode');
 
