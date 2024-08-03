@@ -20,10 +20,6 @@
             color: #566787;
             background-image: url({{asset('managercss/bac.jpg')}});
             background-size: 600px;
-
-
-            font-family: 'Varela Round', sans-serif;
-            font-size: 13px;
         }
         .table-responsive {
             margin: 30px 0;

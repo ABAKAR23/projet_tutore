@@ -5,9 +5,9 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SpectateurController;
 use App\Http\Controllers\UserController;
-
-
+use App\Models\Spectateur;
 
 Route::get('/',[HomeController::class,'home']);
 
@@ -91,6 +91,12 @@ Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->na
 Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
 Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
 Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
+
+
+Route::get('/index', [SpectateurController::class, 'viewIndex'])->name('index');
+Route::get('/tournois', [SpectateurController::class, 'viewTournois'])->name('viewSpecTournois');
+Route::get('/actualite', [SpectateurController::class, 'viewActualite'])->name('viewSpecActualite');
+Route::get('/contact', [SpectateurController::class, 'viewContact'])->name('viewSpecContact');
 
 
 

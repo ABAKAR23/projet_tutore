@@ -177,7 +177,7 @@ class AdminController extends Controller
             'points' => 'required|integer|max:10',
         ]);
 
-        // Création de la nouvelle info
+        // Création du nouveau classement
         $classement = new Classement();
         $classement->equipe = $request->equipe;
         $classement->victoires = $request->victoires;
@@ -199,7 +199,7 @@ class AdminController extends Controller
             'points' => 'required|integer|max:10',
         ]);
 
-        // Trouver l'info par ID et mettre à jour
+        // Trouver le classement par ID et mettre à jour
         $classement = Classement::find($request->id);
         $classement->equipe = $request->input('equipe');
         $classement->victoires = $request->input('victoires');
@@ -219,3 +219,4 @@ class AdminController extends Controller
         return redirect()->route('admin.viewClassements')->with('success', 'Information supprimée avec succès.');
     }
 }
+?>

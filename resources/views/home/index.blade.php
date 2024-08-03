@@ -49,19 +49,13 @@
 
         <div class="container">
             <div class="d-flex align-items-center">
-                <div class="site-logo">
-                    <a href="index.html">
-                        <img src="/images/logo.png" alt="Logo">
-                    </a>
-                </div>
                 <div class="ml-auto">
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li class="active"><a href="index.html" class="nav-link">Accueil</a></li>
-                            <li><a href="matches.html" class="nav-link">Rencontres</a></li>
-                            <li><a href="tournaments.html" class="nav-link">Tournois</a></li>
-                            <li><a href="rankings.html" class="nav-link">Classement</a></li>
-                            <li><a href="infos.html" class="nav-link">Infos</a></li>
+                            <li class="active"><a href="{{route('index')}}" class="nav-link">Accueil</a></li>
+                            <li><a href="{{route('viewSpecTournois')}}" class="nav-link">Tournois</a></li>
+                            <li><a href="{{route('viewSpecActualite')}}" class="nav-link">Actualité</a></li>
+                            <li><a href="{{route('viewSpecContact')}}" class="nav-link">Nous contacter</a></li>
                         </ul>
                     </nav>
 
@@ -78,10 +72,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 ml-auto">
                     <h1 class="text-white">ESMT's Cups Events</h1>
-                    <p>Welcome to the fip of ESMT's sports news. Here you will find the latest news on the different cups of the ESMT, the results, upcoming events and much more</p>
+                    <p>Bienvenue dans la fil d'actualité sportive de l'ESMT. Vous trouverez ici les dernières nouvelles sur les différentes coupes de l'ESMT, les résultats, les événements à venir et bien plus encore.</p>
                     <p>
-                        <a href="#" class="btn btn-primary py-3 px-4 mr-3">Book Ticket</a>
-                        <a href="#" class="more light">Learn More</a>
+                        <a href="#" class="btn btn-primary py-3 px-4 mr-3">Réserver un ticket</a>
                     </p>
                 </div>
             </div>

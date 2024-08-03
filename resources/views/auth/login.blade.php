@@ -1,4 +1,12 @@
 <x-guest-layout>
+    <!-- <style>
+        body {
+            background-image: url('{{ asset('images/bg_1.jpg') }}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style> -->
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -45,3 +53,4 @@
         </div>
     </form>
 </x-guest-layout>
+
