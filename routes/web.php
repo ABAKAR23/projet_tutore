@@ -5,7 +5,10 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\MatchController;
 use App\Http\Controllers\UserController;
+
 
 
 
@@ -35,7 +38,7 @@ Route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth
 Route::get('manager/dashboard', [ManagerController::class, 'index'])->middleware(['auth', 'manager']);
 
 //route pour la listes des users
-Route::get('viewusers', [\App\Http\Controllers\AdminController::class, 'viewusers'])->middleware(['auth', 'admin']);
+Route::get('viewusers', [AdminController::class, 'viewusers'])->middleware(['auth', 'admin']);
 
 
 
@@ -77,21 +80,36 @@ Route::post('/infos/update', [AdminController::class, 'updateInfo'])->name('info
 Route::delete('/infos/delete', [AdminController::class, 'deleteInfo'])->name('info.delete');
 
 
+Route::get('viewClassements', [AdminController::class, 'viewClassements'])->name('admin.viewClassements');
+
+Route::get('/admin/view-classements', [AdminController::class, 'viewClassements'])->name('admin.viewClassements');
+Route::post('/add-classement', [AdminController::class, 'storeClassement'])->name('classement.store');
+Route::post('/classements/update', [AdminController::class, 'updateClassement'])->name('classement.update');
+Route::delete('/classements/delete', [AdminController::class, 'deleteClassement'])->name('classement.delete');
+
 
 Route::get('viewTournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
 
 Route::get('/admin/view-tournois', [AdminController::class, 'viewTournois'])->name('admin.viewTournois');
 Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->name('tournament.store');
-<<<<<<< HEAD
-Route::post('/update-tournament', [AdminController::class, 'updateTournament'])->name('tournament.update');
-Route::post('/delete-tournament', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
-=======
 Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
 Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
-Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
->>>>>>> 9648f8de4757a91cec103d40124fb3dec260113e
 
+Route::get('viewEquipes', [EquipeController::class, 'index'])->name('viewEquipes');
+Route::get('/equipes/create', [EquipeController::class, 'create'])->name('equipes.create');
+Route::post('/equipes', [EquipeController::class, 'store'])->name('equipes.store');
+Route::get('/admin/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('admin.editEquipe');
 
+Route::get('/admin/equipes', [EquipeController::class, 'index'])->name('admin.viewEquipes');
+Route::post('/admin/equipes', [EquipeController::class, 'store'])->name('admin.storeEquipe');
+Route::put('/admin/equipes/{id}', [EquipeController::class, 'update'])->name('admin.updateEquipe');
+Route::delete('/admin/equipes/{id}', [EquipeController::class, 'destroy'])->name('admin.deleteEquipe');
+Route::get('/equipes/{id}/membres', [EquipeController::class, 'manageMembers'])->name('admin.manageMembers');
+Route::post('/equipe/store-member', [EquipeController::class, 'storeMember'])->name('equipe.storeMember');
+Route::get('/tournois', [AdminController::class, 'viewTournois'])->name('tournois');
+// Dans web.php
+// Dans routes/web.php
+Route::get('/admin/equipes', [AdminController::class, 'manageMembers'])->name('admin.manageMembers');
 
 
 

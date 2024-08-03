@@ -80,7 +80,7 @@
                     <h1 class="text-white">ESMT's Cups Events</h1>
                     <p>Welcome to the fip of ESMT's sports news. Here you will find the latest news on the different cups of the ESMT, the results, upcoming events and much more</p>
                     <p>
-                        <a href="#" class="btn btn-primary py-3 px-4 mr-3">Book Ticket</a>
+                        <a href="/test" class="btn btn-primary py-3 px-4 mr-3">Réserver un ticket</a>
                         <a href="#" class="more light">Learn More</a>
                     </p>
                 </div>

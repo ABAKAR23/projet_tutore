@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use App\Models\Infos;
 use App\Models\Tournoi;
 use App\Models\User;
@@ -105,7 +106,7 @@ class AdminController extends Controller
     }
 
 
-<<<<<<< HEAD
+
     // CRUD infos
     public function viewInfos(){
         $infos = Infos::all();
@@ -159,7 +160,28 @@ class AdminController extends Controller
 
         return redirect()->route('admin.viewInfos')->with('success', 'Information supprimée avec succès.');
     }
-=======
+
+    public function tournois()
+    {
+        $tournois = Tournoi::all();
+        return view('admin.viewTournois', compact('tournois'));
+    }
+
+
+    //la fonction pour faire le crud des equipes
+    // Dans AdminController.php
+// Dans AdminController.php
+// Dans AdminController.php
+public function manageMembers()
+{
+    $equipes = Equipe::all(); // Récupère toutes les équipes de la base de données
+    return view('equipes.manageMembers', compact('equipes')); // Passe la variable à la vue
+}
+
+
+
+
     
->>>>>>> 9648f8de4757a91cec103d40124fb3dec260113e
+    
+
 }

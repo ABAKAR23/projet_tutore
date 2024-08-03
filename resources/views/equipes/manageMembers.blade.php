@@ -1,9 +1,10 @@
+<!-- resources/views/equipes/manageMembers.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Tournois</title>
+    <title>Gestion des Membres des Équipes</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
@@ -107,10 +108,10 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Gestion des <b>Tournois</b></h2>
+                        <h2>Gestion des <b>Équipes</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a href="#addTournamentModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un nouveau Tournoi</span></a>
+                        <a href="#addEquipeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter une nouvelle Équipe</span></a>
                     </div>
                 </div>
             </div>
@@ -119,25 +120,18 @@
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Type</th>
-                        <th>Date de Début</th>
-                        <th>Date de Fin</th>
-                        <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($tournois as $tournoi)
+                    @foreach($equipes as $equipe)
                     <tr>
-                        <td>{{ $tournoi->id }}</td>
-                        <td>{{ $tournoi->nom }}</td>
-                        <td>{{ $tournoi->type }}</td>
-                        <td>{{ $tournoi->dateDebut }}</td>
-                        <td>{{ $tournoi->dateFin }}</td>
-                        <td>{{ $tournoi->statut }}</td>
+                        <td>{{ $equipe->id }}</td>
+                        <td>{{ $equipe->nom }}</td>
                         <td>
-                            <a href="#editTournamentModal" class="edit" data-toggle="modal" data-id="{{ $tournoi->id }}" data-nom="{{ $tournoi->nom }}" data-type="{{ $tournoi->type }}" data-datedebut="{{ $tournoi->dateDebut }}" data-datefin="{{ $tournoi->dateFin }}" data-statut="{{ $tournoi->statut }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <form action="{{ route('tournament.delete', $tournoi->id) }}" method="POST" style="display:inline;">
+                            <a href="#editEquipeModal" class="edit" data-toggle="modal" data-id="{{ $equipe->id }}" data-nom="{{ $equipe->nom }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#manageMembersModal" class="btn btn-primary" data-toggle="modal">Gérer Membres</a>
+                            <form action="{{ route('admin.deleteEquipe', $equipe->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" style="border:none; background:none; color: #F44336;"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
@@ -150,36 +144,20 @@
         </div>
     </div>
 
-    <!-- Add Tournament Modal HTML -->
-    <div id="addTournamentModal" class="modal fade">
+    <!-- Add Equipe Modal HTML -->
+    <div id="addEquipeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="addTournamentForm" method="post" action="{{ route('tournament.store') }}">
+                <form id="addEquipeForm" method="post" action="{{ route('admin.storeEquipe') }}">
                     @csrf
                     <div class="modal-header">
-                        <h4 class="modal-title">Ajouter Tournoi</h4>
+                        <h4 class="modal-title">Ajouter Équipe</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Nom</label>
                             <input type="text" name="nom" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="text" name="type" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Date de début</label>
-                            <input type="date" name="dateDebut" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Date de fin</label>
-                            <input type="date" name="dateFin" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Statut</label>
-                            <input type="text" name="statut" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -191,15 +169,16 @@
         </div>
     </div>
 
-    <!-- Edit Tournament Modal HTML -->
-    <div id="editTournamentModal" class="modal fade">
+    <!-- Edit Equipe Modal HTML -->
+    <div id="editEquipeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="editTournamentForm" method="post" action="{{ route('tournament.update') }}">
+                <form id="editEquipeForm" method="post">
                     @csrf
+                    @method('PUT')
                     <input type="hidden" name="id" id="edit-id">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modifier Tournoi</h4>
+                        <h4 class="modal-title">Modifier Équipe</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -207,55 +186,74 @@
                             <label>Nom</label>
                             <input type="text" name="nom" id="edit-nom" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="text" name="type" id="edit-type" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Date de début</label>
-                            <input type="date" name="dateDebut" id="edit-dateDebut" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Date de fin</label>
-                            <input type="date" name="dateFin" id="edit-dateFin" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Statut</label>
-                            <input type="text" name="statut" id="edit-statut" class="form-control" required>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-                        <input type="submit" class="btn btn-info" value="Enregistrer">
+                        <input type="submit" class="btn btn-info" value="Modifier">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        // Edit modal
-        $('#editTournamentModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var nom = button.data('nom')
-            var type = button.data('type')
-            var dateDebut = button.data('datedebut')
-            var dateFin = button.data('datefin')
-            var statut = button.data('statut')
+    <!-- Delete Equipe Modal HTML -->
+    <div id="deleteEquipeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="deleteEquipeForm" method="post" action="">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-header">
+                        <h4 class="modal-title">Supprimer Équipe</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr de vouloir supprimer cette équipe ?</p>
+                        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-            var modal = $(this)
-            modal.find('.modal-body #edit-id').val(id)
-            modal.find('.modal-body #edit-nom').val(nom)
-            modal.find('.modal-body #edit-type').val(type)
-            modal.find('.modal-body #edit-dateDebut').val(dateDebut)
-            modal.find('.modal-body #edit-dateFin').val(dateFin)
-            modal.find('.modal-body #edit-statut').val(statut)
-        })
+    <!-- Gestion Membres Modal HTML -->
+    <div id="manageMembersModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Gérer Membres</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Vous pouvez ajouter du contenu ici pour gérer les membres d'une équipe -->
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Fermer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $('#editEquipeModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var nom = button.data('nom');
+
+            var modal = $(this);
+            modal.find('#edit-id').val(id);
+            modal.find('#edit-nom').val(nom);
+
+            var form = modal.find('#editEquipeForm');
+            form.attr('action', '/admin/equipes/' + id);
+        });
 
     </script>
 </body>
