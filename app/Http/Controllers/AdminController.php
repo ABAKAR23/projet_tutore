@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
+
 use App\Models\Equipe;
-=======
+
 use App\Models\Classement;
->>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
+
 use App\Models\Infos;
 use App\Models\Tournoi;
 use App\Models\User;
@@ -110,10 +110,9 @@ class AdminController extends Controller
     }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
+
+
     // CRUD infos
     public function viewInfos(){
         $infos = Infos::all();
@@ -168,7 +167,7 @@ class AdminController extends Controller
         return redirect()->route('admin.viewInfos')->with('success', 'Information supprimée avec succès.');
     }
 
-<<<<<<< HEAD
+
     public function tournois()
     {
         $tournois = Tournoi::all();
@@ -192,7 +191,7 @@ public function manageMembers()
     
     
 
-=======
+
 
     // CRUD classements
     public function viewClassements(){
@@ -251,5 +250,5 @@ public function manageMembers()
 
         return redirect()->route('admin.viewClassements')->with('success', 'Information supprimée avec succès.');
     }
->>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
+
 }

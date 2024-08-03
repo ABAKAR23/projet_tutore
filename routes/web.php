@@ -97,7 +97,7 @@ Route::post('/add-tournament', [AdminController::class, 'storeTournament'])->nam
 Route::post('/tournois/update', [AdminController::class, 'updateTournament'])->name('tournament.update');
 Route::delete('/tournois/{id}', [AdminController::class, 'deleteTournament'])->name('tournament.delete');
 
-<<<<<<< HEAD
+
 Route::get('viewEquipes', [EquipeController::class, 'index'])->name('viewEquipes');
 Route::get('/equipes/create', [EquipeController::class, 'create'])->name('equipes.create');
 Route::post('/equipes', [EquipeController::class, 'store'])->name('equipes.store');
@@ -113,13 +113,13 @@ Route::get('/tournois', [AdminController::class, 'viewTournois'])->name('tournoi
 // Dans web.php
 // Dans routes/web.php
 Route::get('/admin/equipes', [AdminController::class, 'manageMembers'])->name('admin.manageMembers');
-=======
+
 
 Route::post('/paiement', [PaiementController::class, 'store'])->name('paiement.store');
 Route::get('/test', function () {
     return view('card.card');
 });
->>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
+
 
 
 # la route "simple-qrcode"

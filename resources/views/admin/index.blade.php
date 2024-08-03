@@ -24,7 +24,7 @@
                 <li><a href="{{url('viewTournois')}}"> <i class="fa fa-bar-chart"></i>Tournois </a></li>
                 <li><a href="{{url('viewClassements')}}"> <i class="icon-padnote"></i>Classement</a></li>
                 <li><a href="{{url('viewInfos')}}"> <i class="icon-padnote"></i>Informations</a></li>
-<<<<<<< HEAD
+
                 <li><a href="{{url('viewEquipes')}}"> <i class="fa fa-bar-chart"></i>Equipes </a></li>
                 <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example Dropdown</a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -33,8 +33,8 @@
                     <li><a href="#">Page</a></li>
                   </ul>
                 </li> -->
-=======
->>>>>>> 30482d6bbe57f867db2bfe8a933dfb3d9b8ead60
+
+
                 <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
         </ul><span class="heading">Extras</span>
         <ul class="list-unstyled">
