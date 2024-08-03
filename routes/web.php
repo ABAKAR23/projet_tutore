@@ -105,3 +105,7 @@ Route::get('/test', function () {
 //Route::get("simple-qrcode", "SimpleQRcodeController@generate");
 Route::get('simple-qrcode', [SimpleQRcodeController::class, 'generate'])->name('simple-qrcode');
 
+use App\Http\Controllers\ChatbotController;
+
+Route::get('/chatbot', [ChatbotController::class, 'index']);
+Route::post('/chatbot', [ChatbotController::class, 'respond']);
